@@ -100,10 +100,24 @@ customer1.add_review(restaurant1, 4)
 customer2.add_review(restaurant1, 5)
 customer1.add_review(restaurant2, 3)
 
-# Print the restaurants associated with each customer
-print("Restaurants reviewed by", customer1.full_name(), ":", [restaurant.name() for restaurant in customer1.restaurants()])
-print("Restaurants reviewed by", customer2.full_name(), ":", [restaurant.name() for restaurant in customer2.restaurants()])
+# Print the restaurants associated with each customer and their ratings
+print(f"Restaurants reviewed by {customer1.full_name()}:")
+for restaurant in customer1.restaurants():
+    review = [review for review in Review.get_all_reviews() if review.customer() == customer1 and review.restaurant() == restaurant][0]
+    print(f"- {restaurant.name()}: Rating {review.rating()}")
 
-# Print the customers who reviewed each restaurant
-print("Customers who reviewed", restaurant1.name(), ":", [customer.full_name() for customer in restaurant1.customers()])
-print("Customers who reviewed", restaurant2.name(), ":", [customer.full_name() for customer in restaurant2.customers()])
+print(f"Restaurants reviewed by {customer2.full_name()}:")
+for restaurant in customer2.restaurants():
+    review = [review for review in Review.get_all_reviews() if review.customer() == customer2 and review.restaurant() == restaurant][0]
+    print(f"- {restaurant.name()}: Rating {review.rating()}")
+
+# Print the customers who reviewed each restaurant and their ratings
+print(f"Customers who reviewed {restaurant1.name()}:")
+for customer in restaurant1.customers():
+    review = [review for review in Review.get_all_reviews() if review.customer() == customer and review.restaurant() == restaurant1][0]
+    print(f"- {customer.full_name()}: Rating {review.rating()}")
+
+print(f"Customers who reviewed {restaurant2.name()}:")
+for customer in restaurant2.customers():
+    review = [review for review in Review.get_all_reviews() if review.customer() == customer and review.restaurant() == restaurant2][0]
+    print(f"- {customer.full_name()}: Rating {review.rating()}")
