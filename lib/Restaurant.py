@@ -95,10 +95,12 @@ customer2 = Customer("Jane", "Smith")
 restaurant1 = Restaurant("Tasty Eats")
 restaurant2 = Restaurant("Cozy Corner")
 
+
 # Add reviews using the add_review method
 customer1.add_review(restaurant1, 4)
 customer2.add_review(restaurant1, 5)
 customer1.add_review(restaurant2, 3)
+
 
 # Print the restaurants associated with each customer and their ratings
 print(f"Restaurants reviewed by {customer1.full_name()}:")
